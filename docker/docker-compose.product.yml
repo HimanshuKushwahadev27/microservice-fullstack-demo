@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  product-service:
+    build: ../product
+    container_name: product-service
+    restart: always
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/product_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+    ports:
+      - "8083:8080"
+
+    depends_on:
+      - postgres
+
+    networks:
+      - microservices-net
