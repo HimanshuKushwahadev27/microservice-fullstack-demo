@@ -1,4 +1,4 @@
-package com.emi.microservices.product;
+package com.emi.Order;
 
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
@@ -9,13 +9,10 @@ import org.testcontainers.utility.DockerImageName;
 @TestConfiguration(proxyBeanMethods = false)
 class TestcontainersConfiguration {
 
-	@SuppressWarnings("resource")
 	@Bean
 	@ServiceConnection
-	static PostgreSQLContainer postgresContainer() {
-		return new PostgreSQLContainer(DockerImageName.parse("postgres:15"))
-				.withUrlParam("options", "-c TimeZone=UTC")
-			;
+	PostgreSQLContainer postgresContainer() {
+		return new PostgreSQLContainer(DockerImageName.parse("postgres:latest"));
 	}
 
 }

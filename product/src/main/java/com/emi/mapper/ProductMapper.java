@@ -4,16 +4,25 @@ import org.springframework.stereotype.Component;
 
 import com.emi.dto.RequestProductDto;
 import com.emi.entity.Product;
+import com.emi.dto.ResponseProductDto;
 
 @Component
 public class ProductMapper {
 
 	public Product fromRequestToProduct(RequestProductDto req) {
 		return Product.builder()
-				.name(req.getProductName())
+				.name(req.getName())
 				.description(req.getDescription())
 				.price(req.getPrice())
 				.build()
 				;
+	}
+
+	public ResponseProductDto fromProductToResponse(Product product) {
+		return com.emi.dto.ResponseProductDto.builder()
+				.name(product.getName())
+				.description(product.getDescription())
+				.price(product.getPrice())
+				.build();
 	}
 }
