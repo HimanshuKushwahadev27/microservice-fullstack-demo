@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
-
+import static org.hamcrest.Matchers.equalTo;
 import io.restassured.RestAssured;
 
 @Import(TestcontainersConfiguration.class)
@@ -42,9 +42,11 @@ class OrderApplicationTests {
 		           .post("/api/order")
 		       .then()
 		            .statusCode(200)
+		            .log().all()
+		  
 		            .body("pricePaid", Matchers.equalTo(1500))
 		            .body("quantity", Matchers.equalTo(700))
-		            .body("wwvwrgrhet6",Matchers.equalTo("wwvwrgrhet6"))
+		            .body("skuCode",Matchers.equalTo("wwvwrgrhet6"))
 		            
 		            ;
 	}

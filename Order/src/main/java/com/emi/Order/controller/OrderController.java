@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.emi.order.Dtos.RequestOrderDto;
+import com.emi.order.Dtos.ResponseOrderDto;
 import com.emi.order.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,7 @@ public class OrderController {
 	private final OrderService service;
 	
 	@PostMapping
-	public ResponseEntity<String> createOrder(@RequestBody RequestOrderDto req){
-		service.placeOrder(req);
-		return ResponseEntity.ok("Order  Placed");
+	public ResponseEntity<ResponseOrderDto> createOrder(@RequestBody RequestOrderDto req){
+		return ResponseEntity.ok(service.placeOrder(req));
 	}
 }
