@@ -5,86 +5,72 @@ services:
     image: postgres:15
     container_name: postgres
     restart: always
-
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: product_db   # default DB (others created via init.sql)
-
+      POSTGRES_DB: product_db
     ports:
       - "5433:5432"
-
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - postgres_data:/var/lib/postgresql/data
-
     networks:
       - microservices-net
 
 
   inventory:
-    build:
-      context: ../inventory
-      dockerfile: Dockerfile
+    build: ../inventory
     container_name: inventory
     restart: on-failure
-
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/inventory_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-
-    ports:
-      - "8081:8080"
-
     depends_on:
       - postgres
-
     networks:
       - microservices-net
 
 
   order:
-    build:
-      context: ../order
-      dockerfile: Dockerfile
+    build: ../order
     container_name: order
     restart: on-failure
-
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-
-    ports:
-      - "8082:8080"
-
     depends_on:
       - postgres
       - inventory
-
     networks:
       - microservices-net
 
 
   product:
-    build:
-      context: ../product
-      dockerfile: Dockerfile
+    build: ../product
     container_name: product
     restart: on-failure
-
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/product_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-
-    ports:
-      - "8083:8080"
-
     depends_on:
       - postgres
+    networks:
+      - microservices-net
 
+
+  api-gateway:
+    build: ../api-gateway
+    container_name: api-gateway
+    restart: on-failure
+    ports:
+      - "8084:8080"
+    depends_on:
+      - product
+      - order
+      - inventory
     networks:
       - microservices-net
 
