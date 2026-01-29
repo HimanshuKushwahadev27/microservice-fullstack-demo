@@ -14,6 +14,7 @@ public class ProductMapper {
 				.name(req.getName())
 				.description(req.getDescription())
 				.price(req.getPrice())
+				.quantity(req.getQuantity())
 				.build()
 				;
 	}
@@ -23,6 +24,7 @@ public class ProductMapper {
 				.name(product.getName())
 				.description(product.getDescription())
 				.price(product.getPrice())
+				.quantity(product.getQuantity())
 				.build();
 	}
 }
