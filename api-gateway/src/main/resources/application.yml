@@ -15,16 +15,31 @@ spring:
               uri: http://product:8080
               predicates:
                 - Path=/api/product/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: ProductCircuitBreaker
+                    fallbackUri: forward:/fallback/product
 
             - id: order-service
               uri: http://order:8080
               predicates:
                 - Path=/api/order/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: OrderCircuitBreaker
+                    fallbackUri: forward:/fallback/order
 
             - id: inventory-service
               uri: http://inventory:8080
               predicates:
                 - Path=/api/inventory/**
+              filters:
+                - name: CircuitBreaker
+                  args:
+                    name: InventoryCircuitBreaker
+                    fallbackUri: forward:/fallback/inventory
 
             - id: product-api-docs
               uri: http://product:8080
