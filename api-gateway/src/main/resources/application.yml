@@ -26,6 +26,38 @@ spring:
               predicates:
                 - Path=/api/inventory/**
 
+            - id: product-api-docs
+              uri: http://product:8080
+              predicates:
+                - Path=/aggregate/product-service/api-docs
+              filters:
+                - RewritePath=/aggregate/product-service/api-docs, /api-docs
+
+            - id: order-api-docs
+              uri: http://order:8080
+              predicates:
+                - Path=/aggregate/order-service/api-docs
+              filters:
+                - RewritePath=/aggregate/order-service/api-docs, /api-docs
+
+            - id: inventory-api-docs
+              uri: http://inventory:8080
+              predicates:
+                - Path=/aggregate/inventory-service/api-docs
+              filters:
+                - RewritePath=/aggregate/inventory-service/api-docs, /api-docs
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Product Service
+        url: /aggregate/product-service/api-docs
+      - name: Order Service
+        url: /aggregate/order-service/api-docs
+      - name: Inventory Service
+        url: /aggregate/inventory-service/api-docs
+
 management:
   endpoints:
     web:
@@ -34,6 +66,6 @@ management:
 
 logging:
   level:
-    "org.springframework.cloud.gateway": DEBUG
-    "org.springframework.cloud.gateway.route": DEBUG
-    "org.springframework.cloud.gateway.handler": TRACE
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.route: DEBUG
+    org.springframework.cloud.gateway.handler: TRACE
