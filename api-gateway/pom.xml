@@ -56,7 +56,7 @@
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		    <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
 		    <scope>compile</scope>
 		</dependency>
 		<dependency>

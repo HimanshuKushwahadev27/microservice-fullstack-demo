@@ -2,28 +2,64 @@ package com.emi.api_gateway.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import reactor.core.publisher.Mono;
 
 @RestController
 public class FallBackController {
 
-	@GetMapping("/fallback/product")
-	public ResponseEntity<String> productServiceFallBack() {
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-				.body("Product Service is currently unavailable. Please try again later.");
+    @RequestMapping(
+            value = "/fallback/product",
+            method = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.PATCH
+            }
+        )
+	public Mono<ResponseEntity<String>> productServiceFallBack() {
+		return Mono.just(
+            ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body("product service is down")
+        );
 	}
 	
-	@GetMapping("/fallback/order")
-	public ResponseEntity<String> orderServiceFallBack() {
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-				.body("order Service is currently unavailable. Please try again later.");
+    @RequestMapping(
+            value = "/fallback/order",
+            method = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.PATCH
+            }
+        )
+	public Mono<ResponseEntity<String>> orderServiceFallBack() {
+		return Mono.just(
+	            ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+	                .body("order service is down")
+	        );
 	}
 	
-	@GetMapping("/fallback/inventory")
-	public ResponseEntity<String> inventoryServiceFallBack() {
-		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-				.body("Inventory Service is currently unavailable. Please try again later.");
+    @RequestMapping(
+            value = "/fallback/inventory",
+            method = {
+                RequestMethod.GET,
+                RequestMethod.POST,
+                RequestMethod.PUT,
+                RequestMethod.DELETE,
+                RequestMethod.PATCH
+            }
+        )
+	public Mono<ResponseEntity<String>> inventoryServiceFallBack() {
+		return Mono.just(
+            ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body("Inventory service is down")
+        );
 	}
 	
 	
