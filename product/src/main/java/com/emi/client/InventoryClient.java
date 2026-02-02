@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @FeignClient(value="inventory",
-             url="http://inventory:8080",
-             fallback = InventoryClientFallback.class)
+             url="http://inventory:8080"
+             )
 public interface InventoryClient {
 
 	

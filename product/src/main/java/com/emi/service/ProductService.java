@@ -22,7 +22,7 @@ public class ProductService {
 
 	private final ProductRepo repo;
 	private final ProductMapper mapper;
-	private final InventoryClient client;
+	private final InventoryServiceClient client;
 	
 	public ResponseProductDto createProduct(RequestProductDto req) {
 		
