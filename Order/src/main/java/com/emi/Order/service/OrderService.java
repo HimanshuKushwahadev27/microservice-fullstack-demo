@@ -5,7 +5,8 @@ import org.springframework.stereotype.Service;
 import com.emi.order.Dtos.RequestOrderDto;
 import com.emi.order.Dtos.ResponseOrderDto;
 import com.emi.order.Repository.OrderRepo;
-import com.emi.order.client.InventoryClient;
+import com.emi.order.client.InventoryServiceClient;
+import com.emi.order.exception.OutOfStockException;
 import com.emi.order.mapper.OrderMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class OrderService {
 
 	private final OrderMapper orderMapper;
 	private final OrderRepo orderRepo;
-	private final InventoryClient client;
+	private final InventoryServiceClient client;
 	
 	
 	public ResponseOrderDto placeOrder(RequestOrderDto req) {
@@ -30,7 +31,7 @@ public class OrderService {
 				order.getSkuCode()
 				);
 		}else {
-			throw new RuntimeException("product is out of stock");
+			throw new OutOfStockException("product is out of stock");
 		}
 	}
 }
