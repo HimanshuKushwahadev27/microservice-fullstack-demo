@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  inventory:
+    build:
+      context: ./order
+      dockerfile: Dockerfile
+    container_name: order
+    restart: on-failure
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+
+    ports:
+      - "8082:8080"
+
+    depends_on:
+      - postgres
+
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
