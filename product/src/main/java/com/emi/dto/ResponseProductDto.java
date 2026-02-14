@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class ResponseProductDto {
+	private String skuCode;
 
 	private String name;
 	private String description;

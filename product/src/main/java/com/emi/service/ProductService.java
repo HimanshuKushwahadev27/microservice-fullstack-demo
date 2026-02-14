@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.emi.client.InventoryClient;
+import com.emi.client.InventoryServiceClient;
 import com.emi.dto.RequestProductDto;
 import com.emi.dto.ResponseProductDto;
 import com.emi.mapper.ProductMapper;

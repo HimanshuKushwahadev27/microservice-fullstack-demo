@@ -11,16 +11,19 @@ public class ProductMapper {
 
 	public Product fromRequestToProduct(RequestProductDto req) {
 		return Product.builder()
+				.skuCode(req.getSkuCode())
 				.name(req.getName())
 				.description(req.getDescription())
 				.price(req.getPrice())
 				.quantity(req.getQuantity())
 				.build()
+				
 				;
 	}
 
 	public ResponseProductDto fromProductToResponse(Product product) {
 		return com.emi.dto.ResponseProductDto.builder()
+				.skuCode(product.getSkuCode())
 				.name(product.getName())
 				.description(product.getDescription())
 				.price(product.getPrice())
