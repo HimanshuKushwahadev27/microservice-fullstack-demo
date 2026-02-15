@@ -1,4 +1,4 @@
-package com.emi.order.controller;
+package com.emi.Order.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.emi.order.Dtos.RequestOrderDto;
-import com.emi.order.Dtos.ResponseOrderDto;
-import com.emi.order.service.OrderService;
-
+import com.emi.Order.Dtos.RequestOrderDto;
+import com.emi.Order.Dtos.ResponseOrderDto;
+import com.emi.Order.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @RestController

@@ -1,4 +1,4 @@
-package com.emi.order.exception;
+package com.emi.Order.exception;
 
 public class OutOfStockException extends RuntimeException {
 

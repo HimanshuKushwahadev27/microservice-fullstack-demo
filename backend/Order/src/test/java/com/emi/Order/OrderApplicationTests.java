@@ -1,4 +1,4 @@
-package com.emi.order;
+package com.emi.Order;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;

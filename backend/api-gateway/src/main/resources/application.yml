@@ -61,6 +61,22 @@ spring:
                 - Path=/aggregate/inventory-service/api-docs
               filters:
                 - RewritePath=/aggregate/inventory-service/api-docs, /api-docs
+                
+          
+          globalcors:
+              cors-configurations:
+                "[/**]":
+                  allowedOrigins: "http://localhost:4200"
+                  allowedMethods:
+                    - GET
+                    - POST
+                    - PUT
+                    - DELETE
+                    - OPTIONS
+                    - PATCH
+                  allowedHeaders: "*"
+                  allowCredentials: true
+
 
 springdoc:
   swagger-ui:

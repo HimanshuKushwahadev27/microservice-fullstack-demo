@@ -1,4 +1,4 @@
-package com.emi.order.Dtos;
+package com.emi.Order.Dtos;
 
 import java.math.BigDecimal;
 

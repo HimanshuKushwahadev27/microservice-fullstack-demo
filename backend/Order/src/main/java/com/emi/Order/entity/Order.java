@@ -1,4 +1,4 @@
-package com.emi.order.entity;
+package com.emi.Order.entity;
 
 import java.math.BigDecimal;
 

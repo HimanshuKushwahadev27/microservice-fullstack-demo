@@ -1,6 +1,8 @@
-package com.emi.order;
+package com.emi.Order;
 
 import org.springframework.boot.SpringApplication;
+
+import com.emi.Order.OrderApplication;
 
 
 public class TestOrderApplication {

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { OrderService } from '../../services/order/order';
 import { ProductService } from '../../services/product/product.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { Product } from '../../models/product';
 import { Order } from '../../models/order';
 

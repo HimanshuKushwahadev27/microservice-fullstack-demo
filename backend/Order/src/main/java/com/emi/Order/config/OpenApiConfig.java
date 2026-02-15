@@ -1,4 +1,4 @@
-package com.emi.order.config;
+package com.emi.Order.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

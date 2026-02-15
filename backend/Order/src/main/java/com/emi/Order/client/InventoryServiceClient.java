@@ -1,4 +1,4 @@
-package com.emi.order.client;
+package com.emi.Order.client;
 
 
 import org.springframework.stereotype.Service;

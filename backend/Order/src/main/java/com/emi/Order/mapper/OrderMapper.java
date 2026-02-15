@@ -1,11 +1,11 @@
-package com.emi.order.mapper;
+package com.emi.Order.mapper;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.emi.order.Dtos.RequestOrderDto;
-import com.emi.order.entity.Order;
+import com.emi.Order.Dtos.RequestOrderDto;
+import com.emi.Order.entity.Order;
 
 @Component
 public class OrderMapper {

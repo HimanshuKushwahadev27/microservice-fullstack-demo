@@ -1,13 +1,13 @@
-package com.emi.order.service;
+package com.emi.Order.service;
 
 import org.springframework.stereotype.Service;
 
-import com.emi.order.Dtos.RequestOrderDto;
-import com.emi.order.Dtos.ResponseOrderDto;
-import com.emi.order.Repository.OrderRepo;
-import com.emi.order.client.InventoryServiceClient;
-import com.emi.order.exception.OutOfStockException;
-import com.emi.order.mapper.OrderMapper;
+import com.emi.Order.Dtos.RequestOrderDto;
+import com.emi.Order.Dtos.ResponseOrderDto;
+import com.emi.Order.Repository.OrderRepo;
+import com.emi.Order.client.InventoryServiceClient;
+import com.emi.Order.exception.OutOfStockException;
+import com.emi.Order.mapper.OrderMapper;
 
 import lombok.RequiredArgsConstructor;
 
