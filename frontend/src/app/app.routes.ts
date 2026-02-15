@@ -6,5 +6,4 @@ export const routes: Routes = [
 
   {path : '', component: HomePage},
   {path : 'add-product', component: AddProduct}
-
 ];

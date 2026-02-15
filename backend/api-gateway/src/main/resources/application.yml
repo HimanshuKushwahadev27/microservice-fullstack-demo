@@ -88,6 +88,7 @@ springdoc:
         url: /aggregate/order-service/api-docs
       - name: Inventory Service
         url: /aggregate/inventory-service/api-docs
+    disable-swagger-default-url: true
 
 management:
   endpoints:

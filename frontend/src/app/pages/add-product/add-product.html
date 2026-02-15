@@ -1,1 +1,113 @@
-<p>add-product works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <div class="card shadow-sm">
+        <div class="card-body">
+
+          <h3 class="card-title mb-4 text-center">Add Product</h3>
+
+          @if (productCreated) {
+            <div class="alert alert-success text-center">
+              Product Created Successfully
+            </div>
+          }
+
+          @if (addProductForm) {
+          <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+
+            <!-- SKU Code -->
+            <div class="mb-3">
+              <label for="skuCode" class="form-label">SKU Code</label>
+              <input
+                type="text"
+                id="skuCode"
+                formControlName="skuCode"
+                class="form-control"
+                [class.is-invalid]="skuCode?.invalid && (skuCode?.dirty || skuCode?.touched)"
+              />
+              <div class="invalid-feedback">
+                SKU Code is required.
+              </div>
+            </div>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                formControlName="name"
+                class="form-control"
+                [class.is-invalid]="name?.invalid && (name?.dirty || name?.touched)"
+              />
+              <div class="invalid-feedback">
+                Name is required.
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                id="description"
+                formControlName="description"
+                rows="3"
+                class="form-control"
+                [class.is-invalid]="description?.invalid && (description?.dirty || description?.touched)"
+              ></textarea>
+              <div class="invalid-feedback">
+                Description is required.
+              </div>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input
+                type="number"
+                id="price"
+                formControlName="price"
+                class="form-control"
+                [class.is-invalid]="price?.invalid && (price?.dirty || price?.touched)"
+              />
+              <div class="invalid-feedback">
+                Price is required.
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-4">
+              <label for="quantity" class="form-label">Quantity</label>
+              <input
+                type="number"
+                id="quantity"
+                formControlName="quantity"
+                class="form-control"
+                [class.is-invalid]="quantity?.invalid && (quantity?.dirty || quantity?.touched)"
+              />
+              <div class="invalid-feedback">
+                Quantity is required.
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid">
+              <button
+                type="submit"
+                class="btn btn-success"
+                [disabled]="addProductForm?.invalid"
+              >
+                Add Product
+              </button>
+            </div>
+
+          </form>
+          }
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

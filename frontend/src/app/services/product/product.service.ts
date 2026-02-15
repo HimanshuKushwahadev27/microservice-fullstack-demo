@@ -20,4 +20,7 @@ export class ProductService {
   createProduct(product: Product): Observable<Product> {
     return this.httpClient.post<Product>('http://localhost:8084/api/product', product);
   }
+
+
+  
 }

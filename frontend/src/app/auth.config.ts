@@ -8,5 +8,5 @@ export const authConfig: AuthConfig = {
   scope: 'openid profile email',
   showDebugInformation: true,
   strictDiscoveryDocumentValidation: false,
-  
+  requireHttps: false,
 };
