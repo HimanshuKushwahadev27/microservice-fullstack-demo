@@ -5,8 +5,9 @@ export const authConfig: AuthConfig = {
   redirectUri: '',
   clientId: 'microservice-frontend',
   responseType: 'code',
-  scope: 'openid profile email',
+  scope: 'openid profile email offline_access',
   showDebugInformation: true,
   strictDiscoveryDocumentValidation: false,
   requireHttps: false,
+  useSilentRefresh: true
 };
