@@ -38,7 +38,11 @@ private cdr = inject(ChangeDetectorRef);
   orderSuccess = false;
   orderFailed = false;
 
-private loadProducts() {
+   trackBySku(index: number, product: Product): string {
+    return product.skuCode;
+  }
+
+  private loadProducts() {
   this.isLoggedIn = true;
 
   console.log("Calling product API...");
@@ -47,6 +51,7 @@ private loadProducts() {
     next: products => {
       console.log("Products:", products);
       this.products = products;
+      this.cdr.detectChanges();
     },
     error: err => {
       console.error("Product API error:", err);
@@ -88,13 +93,12 @@ orderProduct(product: Product, quantity: string) {
     return;
   }
 
-  const order: Order = {
-    skuCode: product.skuCode,
-    price: product.price,
+  const order: Order = { 
+    pricePaid: product.price,
     quantity: Number(quantity),
-    userDetails: userDetails
+    skuCode: product.skuCode,
   };
-
+  
   this.orderService.orderProduct(order).subscribe({
     next: () => {
       this.orderSuccess = true;

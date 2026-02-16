@@ -1,89 +1,75 @@
 <main class="container py-4">
-  <!-- Header Section -->
+
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="fw-bold">
       Products ({{ products.length }})
     </h1>
 
-    @if (isLoggedIn) {
-      <button 
-        class="btn btn-success"
-        (click)="router.navigateByUrl('/add-product')">
-        Create Product
-      </button>
-    }
+    <button 
+      *ngIf="isLoggedIn"
+      class="btn btn-success"
+      (click)="router.navigateByUrl('/add-product')">
+      Create Product
+    </button>
   </div>
 
-  <!-- Alerts -->
-  @if (products.length > 0) {
+  <ng-container *ngIf="products.length > 0; else noProducts">
 
-    @if (orderSuccess) {
-      <div class="alert alert-success">
-        Order Placed Successfully
-      </div>
-    }
+    <div *ngIf="orderSuccess" class="alert alert-success">
+      Order Placed Successfully
+    </div>
 
-    @if (orderFailed) {
-      <div class="alert alert-danger">
-        Order Failed, please try again later
-      </div>
+    <div *ngIf="orderFailed" class="alert alert-danger">
+      Order Failed, please try again later
+    </div>
 
-      @if (quantityIsNull) {
-        <div class="alert alert-danger">
-          Quantity cannot be null
-        </div>
-      }
-    }
+    <div *ngIf="quantityIsNull" class="alert alert-danger">
+      Quantity cannot be null
+    </div>
 
-    <!-- Product List -->
     <div class="row">
 
-      @for (product of products; track product.skuCode) {
+      <div 
+        *ngFor="let product of products; trackBy: trackBySku"
+        class="col-md-6 col-lg-4 mb-4">
 
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card shadow-sm h-100">
+        <div class="card shadow-sm h-100">
+          <div class="card-body d-flex flex-column">
 
-            <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-semibold">
+              {{ product.name }}
+            </h5>
 
-              <h5 class="card-title fw-semibold">
-                {{ product.name }}
-              </h5>
+            <p class="card-text text-muted">
+              Price: ₹{{ product.price }}
+            </p>
 
-              <p class="card-text text-muted">
-                Price: ₹{{ product.price }}
-              </p>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Qty</span>
+              <input type="number" class="form-control" #quantityInput>
+            </div>
 
-              <div class="input-group mb-3">
-                <span class="input-group-text">Qty</span>
-                <input 
-                  type="number" 
-                  class="form-control"
-                  #quantityInput>
-              </div>
-
-              <div class="mt-auto">
-                <button 
-                  class="btn btn-primary w-100"
-                  (click)="orderProduct(product, quantityInput.value)">
-                  Order Now
-                </button>
-              </div>
-
+            <div class="mt-auto">
+              <button 
+                class="btn btn-primary w-100"
+                (click)="orderProduct(product, quantityInput.value)">
+                Order Now
+              </button>
             </div>
 
           </div>
         </div>
 
-      }
+      </div>
 
     </div>
 
-  } @else {
+  </ng-container>
 
+  <ng-template #noProducts>
     <div class="alert alert-warning fw-semibold">
       No products found!
     </div>
-
-  }
+  </ng-template>
 
 </main>
