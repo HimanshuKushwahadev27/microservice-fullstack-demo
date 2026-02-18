@@ -36,6 +36,20 @@ services:
     networks:
       - microservices-net
       
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    container_name: schema-registry
+    ports:
+      - "9091:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: PLAINTEXT://broker:9092
+      SCHEMA_REGISTRY_LISTENERS: http://schema-registry:8081
+    depends_on:
+      - broker
+    networks:
+      - microservices-net
+      
   kafka-ui:
      image: provectuslabs/kafka-ui:latest
      container_name: kafka-ui
@@ -155,6 +169,20 @@ services:
       - keycloak
     networks:
       - microservices-net
+      
+      
+  notification:
+    build: ../notification
+    container_name: notification
+    restart: on-failure
+    environment:
+      SPRING_APPLICATION_NAME: notification
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microservices-demo/protocol/openid-connect/certs
+    depends_on:
+      - postgres
+      - keycloak
+    networks:
+        - microservices-net
 
 volumes:
   postgres_data:

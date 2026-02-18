@@ -24,6 +24,6 @@ public class OrderController {
 	public ResponseEntity<ResponseOrderDto> createOrder(
 			@AuthenticationPrincipal Jwt jwt,
 			@RequestBody RequestOrderDto req){
-		return ResponseEntity.ok(service.placeOrder(req, jwt.getClaim("email")));
+		return ResponseEntity.ok(service.placeOrder(req, jwt.getClaim("email"), jwt.getClaimAsString("given_name"), jwt.getClaimAsString("family_name")));
 	}
 }

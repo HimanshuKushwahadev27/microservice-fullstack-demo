@@ -6,7 +6,9 @@ import com.emi.Order.Dtos.RequestOrderDto;
 import com.emi.Order.Dtos.ResponseOrderDto;
 import com.emi.Order.Repository.OrderRepo;
 import com.emi.Order.client.InventoryServiceClient;
-import com.emi.Order.event.OrderEvent;
+
+import com.emi.Order.service.OrderProducerService;
+import com.emi.Order.event.OrderPlaced;
 import com.emi.Order.exception.OutOfStockException;
 import com.emi.Order.mapper.OrderMapper;
 
@@ -23,17 +25,17 @@ public class OrderService {
 	private final OrderProducerService orderProducer;
 	
 	@Transactional
-	public ResponseOrderDto placeOrder(RequestOrderDto req, String email) {
+	public ResponseOrderDto placeOrder(RequestOrderDto req, String email, String firstName, String lastName) {
 		var order=orderMapper.fromReqToOrder(req);
 		
 		if(client.checkInventory(req.skuCode(), req.quantity())) {
 		orderRepo.save(order);
 		
-		OrderEvent orderEvent = new OrderEvent(
-				order.getId(),
-				email,
-				"Order_placed"
-				);
+		OrderPlaced orderEvent = new OrderPlaced();
+			orderEvent.setEmail(email);
+			orderEvent.setOrderNumber(order.getOrderNumber().toString());
+			orderEvent.setFirstName(firstName);
+			orderEvent.setLastName(lastName);
 		orderProducer.sendOrderEvent(orderEvent);
 		
 		return new ResponseOrderDto(
