@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "OrderPlaced",
-  "namespace": "com.emi.Order.event",
+  "namespace": "com.emi.events",
   "fields":[
     {"name": "orderNumber", "type": "string"},
     {"name": "email", "type": "string"},

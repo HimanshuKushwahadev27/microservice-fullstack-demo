@@ -3,7 +3,7 @@ package com.emi.Order.service;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.emi.Order.event.OrderPlaced;
+import com.emi.events.OrderPlaced;
 
 import lombok.RequiredArgsConstructor;
 

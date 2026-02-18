@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package com.emi.Order.event;
+package com.emi.events;
 
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
@@ -13,10 +13,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2871082850971888023L;
+  private static final long serialVersionUID = 9034229020819333919L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OrderPlaced\",\"namespace\":\"com.emi.Order.event\",\"fields\":[{\"name\":\"orderNumber\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"lastName\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"OrderPlaced\",\"namespace\":\"com.emi.events\",\"fields\":[{\"name\":\"orderNumber\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"firstName\",\"type\":\"string\"},{\"name\":\"lastName\",\"type\":\"string\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -201,8 +201,8 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
    * Creates a new OrderPlaced RecordBuilder.
    * @return A new OrderPlaced RecordBuilder
    */
-  public static com.emi.Order.event.OrderPlaced.Builder newBuilder() {
-    return new com.emi.Order.event.OrderPlaced.Builder();
+  public static com.emi.events.OrderPlaced.Builder newBuilder() {
+    return new com.emi.events.OrderPlaced.Builder();
   }
 
   /**
@@ -210,11 +210,11 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing builder to copy.
    * @return A new OrderPlaced RecordBuilder
    */
-  public static com.emi.Order.event.OrderPlaced.Builder newBuilder(com.emi.Order.event.OrderPlaced.Builder other) {
+  public static com.emi.events.OrderPlaced.Builder newBuilder(com.emi.events.OrderPlaced.Builder other) {
     if (other == null) {
-      return new com.emi.Order.event.OrderPlaced.Builder();
+      return new com.emi.events.OrderPlaced.Builder();
     } else {
-      return new com.emi.Order.event.OrderPlaced.Builder(other);
+      return new com.emi.events.OrderPlaced.Builder(other);
     }
   }
 
@@ -223,11 +223,11 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
    * @param other The existing instance to copy.
    * @return A new OrderPlaced RecordBuilder
    */
-  public static com.emi.Order.event.OrderPlaced.Builder newBuilder(com.emi.Order.event.OrderPlaced other) {
+  public static com.emi.events.OrderPlaced.Builder newBuilder(com.emi.events.OrderPlaced other) {
     if (other == null) {
-      return new com.emi.Order.event.OrderPlaced.Builder();
+      return new com.emi.events.OrderPlaced.Builder();
     } else {
-      return new com.emi.Order.event.OrderPlaced.Builder(other);
+      return new com.emi.events.OrderPlaced.Builder(other);
     }
   }
 
@@ -252,7 +252,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(com.emi.Order.event.OrderPlaced.Builder other) {
+    private Builder(com.emi.events.OrderPlaced.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.orderNumber)) {
         this.orderNumber = data().deepCopy(fields()[0].schema(), other.orderNumber);
@@ -276,7 +276,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
      * Creates a Builder by copying an existing OrderPlaced instance
      * @param other The existing instance to copy.
      */
-    private Builder(com.emi.Order.event.OrderPlaced other) {
+    private Builder(com.emi.events.OrderPlaced other) {
       super(SCHEMA$, MODEL$);
       if (isValidValue(fields()[0], other.orderNumber)) {
         this.orderNumber = data().deepCopy(fields()[0].schema(), other.orderNumber);
@@ -310,7 +310,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'orderNumber'.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder setOrderNumber(java.lang.CharSequence value) {
+    public com.emi.events.OrderPlaced.Builder setOrderNumber(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.orderNumber = value;
       fieldSetFlags()[0] = true;
@@ -330,7 +330,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'orderNumber' field.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder clearOrderNumber() {
+    public com.emi.events.OrderPlaced.Builder clearOrderNumber() {
       orderNumber = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -350,7 +350,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'email'.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder setEmail(java.lang.CharSequence value) {
+    public com.emi.events.OrderPlaced.Builder setEmail(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.email = value;
       fieldSetFlags()[1] = true;
@@ -370,7 +370,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'email' field.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder clearEmail() {
+    public com.emi.events.OrderPlaced.Builder clearEmail() {
       email = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -390,7 +390,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'firstName'.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder setFirstName(java.lang.CharSequence value) {
+    public com.emi.events.OrderPlaced.Builder setFirstName(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.firstName = value;
       fieldSetFlags()[2] = true;
@@ -410,7 +410,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'firstName' field.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder clearFirstName() {
+    public com.emi.events.OrderPlaced.Builder clearFirstName() {
       firstName = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -430,7 +430,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'lastName'.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder setLastName(java.lang.CharSequence value) {
+    public com.emi.events.OrderPlaced.Builder setLastName(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.lastName = value;
       fieldSetFlags()[3] = true;
@@ -450,7 +450,7 @@ public class OrderPlaced extends org.apache.avro.specific.SpecificRecordBase imp
       * Clears the value of the 'lastName' field.
       * @return This builder.
       */
-    public com.emi.Order.event.OrderPlaced.Builder clearLastName() {
+    public com.emi.events.OrderPlaced.Builder clearLastName() {
       lastName = null;
       fieldSetFlags()[3] = false;
       return this;

@@ -8,7 +8,7 @@ import com.emi.Order.Repository.OrderRepo;
 import com.emi.Order.client.InventoryServiceClient;
 
 import com.emi.Order.service.OrderProducerService;
-import com.emi.Order.event.OrderPlaced;
+import com.emi.events.OrderPlaced;
 import com.emi.Order.exception.OutOfStockException;
 import com.emi.Order.mapper.OrderMapper;
 
