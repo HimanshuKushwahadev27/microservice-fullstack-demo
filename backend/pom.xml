@@ -18,7 +18,7 @@
 
     <modules>
         <module>common-modules</module>
-        <module>order</module>
+        <module>Order</module>
         <module>notification</module>
         <module>inventory</module>
         <module>product</module>
@@ -33,7 +33,7 @@
         <avro.version>1.12.1</avro.version>
         <confluent.version>8.1.1</confluent.version>
         <springdoc.version>3.0.1</springdoc.version>
-        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <spring-cloud.version>2025.1.0</spring-cloud.version>
     </properties>
 
     <dependencyManagement>

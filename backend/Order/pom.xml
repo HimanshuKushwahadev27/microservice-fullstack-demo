@@ -12,9 +12,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>order</artifactId>
-    <name>order</name>
-    <description>order service</description>
+    <artifactId>Order</artifactId>
+    <name>Order</name>
+    <description>Order service</description>
 
     <dependencies>
 
@@ -38,16 +38,18 @@
         </dependency>
 
         <!-- Flyway -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
+         <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-flyway</artifactId>
         </dependency>
+
 
         <!-- Kafka -->
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-kafka</artifactId>
         </dependency>
+
 
         <!-- OpenFeign -->
         <dependency>
@@ -79,6 +81,11 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+      <dependency>
+          <groupId>org.flywaydb</groupId>
+          <artifactId>flyway-database-postgresql</artifactId>
+          <scope>runtime</scope>
+      </dependency>
         
         <dependency>
             <groupId>com.emi</groupId>
@@ -92,11 +99,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        
          <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
         </dependency>
-                <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        
+        
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -115,6 +124,7 @@
             <artifactId>testcontainers-kafka</artifactId>
             <scope>test</scope>
         </dependency>
+        
          <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>testcontainers-postgresql</artifactId>

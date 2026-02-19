@@ -108,7 +108,9 @@ services:
       - keycloak_data:/opt/keycloak/data
 
   inventory:
-    build: ../inventory
+    build:
+      context: ..
+      dockerfile: inventory/Dockerfile
     container_name: inventory
     restart: on-failure
     environment:
@@ -123,7 +125,9 @@ services:
       - microservices-net
 
   order:
-    build: ../order
+    build:
+      context: ..
+      dockerfile: Order/Dockerfile
     container_name: order
     restart: on-failure
     environment:
@@ -139,7 +143,9 @@ services:
       - microservices-net
 
   product:
-    build: ../product
+    build:
+      context: ..
+      dockerfile: product/Dockerfile
     container_name: product
     restart: on-failure
     environment:
@@ -154,7 +160,9 @@ services:
       - microservices-net
 
   api-gateway:
-    build: ../api-gateway
+    build:
+      context: ..
+      dockerfile: api-gateway/Dockerfile
     container_name: api-gateway
     restart: on-failure
     environment:
@@ -172,7 +180,9 @@ services:
       
       
   notification:
-    build: ../notification
+    build:
+      context: ..
+      dockerfile: notification/Dockerfile
     container_name: notification
     restart: on-failure
     environment:
