@@ -85,7 +85,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.3
     container_name: keycloak
-    command: start-dev
+    command: start-dev --import-realm
     depends_on:
       keycloak-db:
         condition: service_healthy
@@ -101,11 +101,11 @@ services:
       KC_HOSTNAME_STRICT: "false"
       KC_HTTP_ENABLED: "true"
     ports:
-      - "8181:8080"
+      - "8181:8080" 
     networks:
       - microservices-net     
     volumes:
-      - keycloak_data:/opt/keycloak/data
+      - ./keycloak/realms/:/opt/keycloak/data/
 
   inventory:
     build:
@@ -199,11 +199,11 @@ services:
   loki:
     image: grafana/loki:2.9.0
     container_name: loki
-    command: -config.file=/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yml
     ports:
       - "3100:3100"
     volumes:
-      - ./loki-config.yaml:/etc/loki/local-config.yaml
+      - ./loki.yml:/etc/loki/local-config.yml
     networks:
       - microservices-net
       
@@ -220,9 +220,9 @@ services:
   tempo:
     image: grafana/tempo:2.3.1
     container_name: tempo
-    command: ["-config.file=/etc/tempo.yaml"]
+    command: ["-config.file=/etc/tempo.yml"]
     volumes:
-      - ./tempo.yaml:/etc/tempo.yaml
+      - ./tempo.yml:/etc/tempo.yml
     ports:
       - "3200:3200"     
       - "4318:4318"    #zipkin 

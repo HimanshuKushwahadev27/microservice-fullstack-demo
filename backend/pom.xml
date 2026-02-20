@@ -34,6 +34,7 @@
         <confluent.version>8.1.1</confluent.version>
         <springdoc.version>3.0.1</springdoc.version>
         <spring-cloud.version>2025.1.0</spring-cloud.version>
+        <docker-password>${docker-password}</docker-password>
     </properties>
 
     <dependencyManagement>
@@ -109,6 +110,18 @@
                       <groupId>org.springframework.boot</groupId>
                       <artifactId>spring-boot-maven-plugin</artifactId>
                       <version>4.0.2</version>
+                      <configuration>
+                       <image>
+                          <name>
+                            himanshukushwaha69/new-${project.artifactId}
+                          </name>
+                          <publish>true</publish>
+                        </image>
+                        <docker>
+                          <username>himanshukushwaha69</username>
+                          <password>${docker-password}}</password>
+                        </docker>
+                      </configuration>
                    </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -124,6 +137,7 @@
                                 <version>${lombok.version}</version>
                             </path>
                         </annotationProcessorPaths>
+
                     </configuration>
                 </plugin>
 

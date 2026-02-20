@@ -3,6 +3,8 @@ package com.emi.Order.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.observation.aop.ObservedAspect;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -30,5 +32,11 @@ public class OpenApiConfig {
 				   .url("https://order-demo.com/docs")
 				);
 		
+	}
+	
+	
+	@Bean
+	ObservedAspect observedAspect(ObservationRegistry registry) {
+		return new ObservedAspect(registry);
 	}
 }

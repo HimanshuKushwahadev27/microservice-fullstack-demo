@@ -11,6 +11,9 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.observation.aop.ObservedAspect;
+
 
 @Configuration
 @EnableWebFluxSecurity
@@ -23,7 +26,8 @@ public class SecurityConfig {
 			"/actuator/**",
 			"/swagger-resources/**",
 			"/api-docs/**",
-			"/aggregate/**"
+			"/aggregate/**",
+			"*/actuator/prometheus"
 	};
 	
     @Bean
@@ -41,6 +45,12 @@ public class SecurityConfig {
                 )
                 .build();
     }
+    
+    
+	@Bean
+	ObservedAspect observedAspect(ObservationRegistry registry) {
+		return new ObservedAspect(registry);
+	}
 }  
     
   
