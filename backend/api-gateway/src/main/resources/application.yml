@@ -12,7 +12,7 @@ spring:
         webflux:
           routes:
             - id: product-service
-              uri: http://product:8080
+              uri: ${services.product.url}
               predicates:
                 - Path=/api/product/**
               filters:
@@ -22,7 +22,7 @@ spring:
                     fallbackUri: forward:/fallback/product
 
             - id: order-service
-              uri: http://order:8080
+              uri: ${services.order.url}
               predicates:
                 - Path=/api/order/**
               filters:
@@ -32,7 +32,7 @@ spring:
                     fallbackUri: forward:/fallback/order
 
             - id: inventory-service
-              uri: http://inventory:8080
+              uri: ${services.inventory.url}
               predicates:
                 - Path=/api/inventory/**
               filters:
@@ -42,21 +42,21 @@ spring:
                     fallbackUri: forward:/fallback/inventory
 
             - id: product-api-docs
-              uri: http://product:8080
+              uri: ${services.product.url}
               predicates:
                 - Path=/aggregate/product-service/api-docs
               filters:
                 - RewritePath=/aggregate/product-service/api-docs, /api-docs
 
             - id: order-api-docs
-              uri: http://order:8080
+              uri: ${services.order.url}
               predicates:
                 - Path=/aggregate/order-service/api-docs
               filters:
                 - RewritePath=/aggregate/order-service/api-docs, /api-docs
 
             - id: inventory-api-docs
-              uri: http://inventory:8080
+              uri: ${services.inventory.url}
               predicates:
                 - Path=/aggregate/inventory-service/api-docs
               filters:

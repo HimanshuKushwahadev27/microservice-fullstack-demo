@@ -20,33 +20,43 @@ spec:
           ports:
             - containerPort: 5432
           env:
-            - name: POSTGRES_ROOT_PASSWORD
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: postgres_root_password
                   name: postgres-secrets
+                  key: postgres_root_password
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-data
-            - mountPath: docker-entrypoint-initdb.d
-              name: postgres-initdb-config
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+            - name: postgres-initdb-config
+              mountPath: /docker-entrypoint-initdb.d/initdb.sql
+              subPath: initdb.sql
+              
+              
+          livenessProbe:
+            exec:
+              command: ["pg_isready", "-U", "postgres"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+  
+          readinessProbe:
+            exec:
+              command: ["pg_isready", "-U", "postgres"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            
       volumes:
         - name: postgres-data
-          persistentVoulmeClaim:
+          persistentVolumeClaim:
             claimName: postgres-pvc
         - name: postgres-initdb-config
           configMap:
-           name: postgres-initdb-config
-        
-
+            name: postgres-initdb-config
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   name: postgres
-  labels:
-    app: postgres
 spec:
   type: ClusterIP
   selector:
@@ -54,51 +64,45 @@ spec:
   ports:
     - port: 5432
       targetPort: 5432
-      protocol: TCP
-      
 ---
 apiVersion: v1
-data:
-  postgres_root_password: cG9zdGdyZXM=
 kind: Secret
 metadata:
   name: postgres-secrets
-  
+type: Opaque
+data:
+  postgres_root_password: cG9zdGdyZXM=
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: postgres-pv
 spec:
-  storageClassName: 'standard'
-  accessModes:
-    - ReadWriteOnce
+  storageClassName: standard
   capacity:
     storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
   hostPath:
-    path: /data/mysql
-    
-    
+    path: /mnt/data/postgres
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc
 spec:
-  storageClassName: 'standard'
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 2Gi
-      
 ---
 apiVersion: v1
 kind: ConfigMap
-metaData:
+metadata:
   name: postgres-initdb-config
 data:
   initdb.sql: |
-    CREATE DATABASE IF NOT EXISTS order_db;
-    CREATE DATABASE IF NOT EXISTS inventory_db;
-
+    CREATE DATABASE order_db;
+    CREATE DATABASE inventory_db;
