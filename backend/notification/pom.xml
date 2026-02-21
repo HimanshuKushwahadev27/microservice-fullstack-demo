@@ -5,11 +5,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 👇 IMPORTANT: Inherit from your custom parent -->
     <parent>
         <groupId>com.emi</groupId>
         <artifactId>microservices-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> 
     </parent>
 
     <artifactId>notification</artifactId>
@@ -83,7 +83,7 @@
         </dependency>
 
         <!-- Shared Avro Events -->
-        <dependency>
+         <dependency>
             <groupId>com.emi</groupId>
             <artifactId>common-modules</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -110,22 +110,30 @@
 
     </dependencies>
 
-    <build>
+      <build>
         <plugins>
-
-            <!-- Lombok support -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-
-            <!-- Spring Boot plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build-image</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <image>
+                        <name>
+                            himanshukushwaha69/${project.artifactId}:${project.version}
+                        </name>
+                    </image>
+                  
+                    <publish>true</publish>
+                </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

@@ -5,7 +5,6 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 🔥 Inherit from your custom parent -->
     <parent>
         <groupId>com.emi</groupId>
         <artifactId>microservices-parent</artifactId>
@@ -103,7 +102,6 @@
             <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
         </dependency>
 
-        <!-- Swagger (optional) -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -115,7 +113,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <!-- TEST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -145,23 +142,31 @@
         </dependency>
 
     </dependencies>
-
-    <build>
+    
+      <build>
         <plugins>
-
-            <!-- Lombok -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-            </plugin>
-
-            <!-- Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build-image</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <image>
+                        <name>
+                            himanshukushwaha69/${project.artifactId}:${project.version}
+                        </name>
+                    </image>
+             
+                    <publish>true</publish>
+                </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
