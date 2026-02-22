@@ -17,6 +17,7 @@ spec:
       containers:
         - name: schema-registry
           image: confluentinc/cp-schema-registry:7.5.0
+          command: ["bash", "-c", "unset SCHEMA_REGISTRY_PORT; /etc/confluent/docker/run"]
           ports:
             - containerPort: 8081
 
@@ -35,6 +36,9 @@ spec:
             
             - name: SCHEMA_REGISTRY_KAFKASTORE_TOPIC
               value: _schemas
+              
+            - name: SCHEMA_REGISTRY_KAFKASTORE_SECURITY_PROTOCOL
+              value: PLAINTEXT
 
 ---
 apiVersion: v1

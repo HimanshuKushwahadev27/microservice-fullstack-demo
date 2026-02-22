@@ -12,21 +12,21 @@ data:
       - job_name: "api-gateway"
         metrics_path: "/actuator/prometheus"
         static_configs:
-          - targets: ["api-gateway:8080"]
+          - targets: ["api-gateway:9000"]
             labels:
               application: "api-gateway"
 
       - job_name: "order-service"
         metrics_path: "/actuator/prometheus"
         static_configs:
-          - targets: ["order:8080"]
+          - targets: ["order:8081"]
             labels:
               application: "order"
 
       - job_name: "inventory-service"
         metrics_path: "/actuator/prometheus"
         static_configs:
-          - targets: ["inventory:8080"]
+          - targets: ["inventory:8082"]
             labels:
               application: "inventory"
 
@@ -40,7 +40,7 @@ data:
       - job_name: "notification-service"
         metrics_path: "/actuator/prometheus"
         static_configs:
-          - targets: ["notification:8080"]
+          - targets: ["notification:8083"]
             labels:
               application: "notification"
 

@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "services.inventory.url",
+    "type": "java.lang.String",
+    "description": "A description for 'services.inventory.url'"
+  },
+  {
+    "name": "loki.url",
+    "type": "java.lang.String",
+    "description": "A description for 'loki.url'"
+  }
+]}
