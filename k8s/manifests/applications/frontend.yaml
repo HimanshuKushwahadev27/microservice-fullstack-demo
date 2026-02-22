@@ -16,7 +16,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: himanshukushwaha69/fontend
+      - image: himanshukushwaha69/frontend:latest
         name: fontend
         ports:
         - containerPort: 80
