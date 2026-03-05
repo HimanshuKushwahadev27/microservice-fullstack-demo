@@ -114,6 +114,7 @@ services:
     container_name: inventory
     restart: on-failure
     environment:
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx256m
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/inventory_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
@@ -131,6 +132,7 @@ services:
     container_name: order
     restart: on-failure
     environment:
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx256m
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
@@ -149,6 +151,7 @@ services:
     container_name: product
     restart: on-failure
     environment:
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx256m
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/product_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
@@ -167,6 +170,7 @@ services:
     container_name: api-gateway
     restart: on-failure
     environment:
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx256m
       SPRING_APPLICATION_NAME: api-gateway
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microservices-demo/protocol/openid-connect/certs
     ports:
@@ -187,6 +191,7 @@ services:
     container_name: notification
     restart: on-failure
     environment:
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx256m
       SPRING_APPLICATION_NAME: notification
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8080/realms/microservices-demo/protocol/openid-connect/certs
     depends_on:

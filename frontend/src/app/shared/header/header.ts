@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({

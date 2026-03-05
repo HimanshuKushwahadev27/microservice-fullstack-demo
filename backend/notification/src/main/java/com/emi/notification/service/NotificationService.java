@@ -33,7 +33,7 @@ public class NotificationService {
 		);
 		MimeMessagePreparator mimeMessagePresparator = mimeMessage -> {
 			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-			helper.setFrom("springshop@email.con");
+			helper.setFrom("himanshumaurya447756@gmail.com");
 			helper.setTo(orderPlaced.getEmail().toString());
 			helper.setSubject(String.format("Order Placed successfully " +orderPlaced.getOrderNumber()));
 			helper.setText(body,false);
